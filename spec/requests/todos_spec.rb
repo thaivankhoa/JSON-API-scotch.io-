@@ -1,8 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe 'Todos API', type: :request do
-	#initialize test data
-	let!(todos) { create_list(:todo, 10) }
+	# initialize test data 
+	let!(:todos) { create_list(:todo, 10) }
 	let(:todo_id) { todos.first.id }
 
 	# Test suite for GET /todos
@@ -16,7 +16,7 @@ RSpec.describe 'Todos API', type: :request do
 			expect(json.size).to eq(10)
 		end
 
-		it 'return status code 200'
+		it 'returns status code 200' do
 			expect(response).to have_http_status(200)
 		end
 	end
@@ -31,7 +31,7 @@ RSpec.describe 'Todos API', type: :request do
 				expect(json['id']).to eq(todo_id)
 			end
 
-			it "return status code 200" do
+			it 'returns status code 200' do
 				expect(response).to have_http_status(200)
 			end
 		end
@@ -39,19 +39,13 @@ RSpec.describe 'Todos API', type: :request do
 		context 'when record does not exist' do
 			let(:todo_id) { 100 }
 
-			it 'return status code 404' do
+			it 'returns status code 404' do
 				expect(response).to have_http_status(404)
 			end
 
-			it 'return a not found message' do
+			it 'returns a not found message' do
 				expect(response.body).to match(/Couldn't find Todo/)
 			end
 		end
-	end
-
-	# Test suite for POST/todos
-
-	describe 'POST /todos' do
-		
 	end
 end
