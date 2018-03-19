@@ -23,7 +23,7 @@ RSpec.describe 'Todos API', type: :request do
 
 	#Test suite for GET /todos/:id
 	describe 'GET/ todos/:id' do
-		before { get '/todos/#{todo_id}' }
+		before { get "/todos/#{todo_id}" }
 
 		context 'when the record exists' do
 			it 'return the todo' do
@@ -75,7 +75,7 @@ RSpec.describe 'Todos API', type: :request do
       end
 
       it 'return a validation failure message' do
-        expect(response.body).to match(/Validation failed: Create cant be blank/)
+        expect(response.body).to match(/Validation failed: Create by can't be blank/)
       end
     end
   end
@@ -83,10 +83,10 @@ RSpec.describe 'Todos API', type: :request do
   # Test suite for PUT/ todos
 
   describe 'PUT /todos' do
-    let(:valid_attribures) { { title: 'Shopping' } }
+    let(:valid_attributes) { { title: 'Shopping' } }
 
     context 'when the record exists' do
-      before { put '/todos/#{todo_id}', params: valid_attributes }
+      before { put "/todos/#{todo_id}", params: valid_attributes }
 
       it 'updates the record' do
         expect(response.body).to be_empty
@@ -100,7 +100,7 @@ RSpec.describe 'Todos API', type: :request do
 
   # Test suite for DELETE /todos/:id
   describe 'DELETE /todos/:id' do
-    before { delete '/todos/#{todo_id}'}
+    before { delete "/todos/#{todo_id}"}
 
     it 'return status code 204' do
       expect(response).to have_http_status(204)
